@@ -39,7 +39,7 @@ const ImageUpload = () => {
           </p>
           <div className='flex flex-col sm:flex-row items-center gap-6 mb-6'>
             <img 
-              src="./src/assets/esewa.png" 
+              src="http://localhost:5173/src/assets/esewa.png" 
               alt="Esewa QR Code" 
               className='w-40 h-40 sm:w-48 sm:h-48 object-contain border border-gray-300 rounded-lg shadow-md'
             />
