@@ -8,20 +8,18 @@ const Form = () => {
   const [formSuccess, setFormSuccess] = useState('');
   const navigate = useNavigate(); 
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-
 
     setFormError('');
     setFormSuccess('');
 
-
     const formData = new FormData(form.current);
     const data = Object.fromEntries(formData);
 
-
     const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    
+
+    // Validation checks
     if (!data.from_name || !data.from_email || !data.from_phone || !data.from_college || !data.message) {
       setFormError('All fields are required.');
       return;
@@ -37,16 +35,21 @@ const Form = () => {
       return;
     }
 
-    emailjs.sendForm('service_ltzv5hg', 'template_di6c658', form.current, '3ERo9wAPnsHLrBSEo')
-      .then((result) => {
-        setFormSuccess('Email sent successfully!');
-        form.current.reset();
-        // Navigate to the image upload page after success
-        setTimeout(() => navigate('/imageupload'), 100); 
-      }, (error) => {
-        setFormError('Failed to send email.');
-        console.error('Failed to send email:', error.text);
-      });
+    try {
+      await emailjs.sendForm('service_ltzv5hg', 'template_di6c658', form.current, '3ERo9wAPnsHLrBSEo');
+      setFormSuccess('Email sent successfully!');
+      form.current.reset();
+      
+      // Navigate to the image upload page after success
+      setTimeout(() => {
+        navigate('/imageupload');
+        setFormError(''); // Clear error message on successful navigation
+        setFormSuccess(''); // Clear success message on successful navigation
+      }, 100); 
+    } catch (error) {
+      setFormError('Failed to send email.');
+      console.error('Failed to send email:', error.text);
+    }
   };
 
   return (
@@ -64,7 +67,9 @@ const Form = () => {
             type="text"
             name="from_name"
             placeholder='Your Full Name'
-            className='w-full h-12 shadow-lg shadow-black opacity-70 p-2 rounded-md text-base sm:text-lg' autoComplete='on' required
+            className='w-full h-12 shadow-lg shadow-black opacity-70 p-2 rounded-md text-base sm:text-lg'
+            autoComplete='on' 
+            required
           />
         </div>
 
@@ -77,7 +82,8 @@ const Form = () => {
             className='w-full h-12 shadow-lg shadow-black opacity-70 p-2 rounded-md text-base sm:text-lg'
             pattern="[a-zA-Z0-9._%+-]+@gmail\.com"
             title="Please enter a valid Gmail address"
-            required autoComplete='on'
+            required 
+            autoComplete='on'
           />
         </div>
 
@@ -90,7 +96,8 @@ const Form = () => {
             className='w-full h-12 shadow-lg shadow-black opacity-70 p-2 rounded-md text-base sm:text-lg'
             pattern="\d*"
             title="Please enter a valid phone number (numbers only)"
-            required autoComplete='on'
+            required 
+            autoComplete='on'
           />
         </div>
 
@@ -100,7 +107,8 @@ const Form = () => {
             type="text"
             name="from_college"
             placeholder='Your College Name'
-            className='w-full h-12 shadow-lg shadow-black opacity-70 p-2 rounded-md text-base sm:text-lg' autoComplete='on'
+            className='w-full h-12 shadow-lg shadow-black opacity-70 p-2 rounded-md text-base sm:text-lg' 
+            autoComplete='on'
           />
         </div>
 
@@ -111,7 +119,8 @@ const Form = () => {
             name="message"
             rows="6"
             className="w-full border border-gray-300 rounded-md shadow-lg shadow-black opacity-70 p-3 text-base sm:text-lg focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
-            required autoComplete='on'
+            required 
+            autoComplete='on'
           ></textarea>
         </div>
 
