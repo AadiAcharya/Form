@@ -22,9 +22,6 @@ const ImageUpload = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
-
     navigate('/'); 
   };
 
@@ -37,18 +34,22 @@ const ImageUpload = () => {
           <p className='text-lg mb-6 text-center'>
             Scan the given QR code to proceed with the payment
           </p>
-          <div className='flex flex-col sm:flex-row items-center gap-6 mb-6'>
-            <img 
-              src="http://localhost:5173/src/assets/esewa.png" 
-              alt="Esewa QR Code" 
-              className='w-40 h-40 sm:w-48 sm:h-48 object-contain border border-gray-300 rounded-lg shadow-md'
-            />
-            {image && (
-              <img
-                src={image}
-                alt="Uploaded Payment Image"
-                className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-lg shadow-md mt-4 sm:mt-0"
+          <div className='flex flex-col sm:flex-row items-center gap-8 mb-6'>
+            <div className='w-64 h-64 sm:max-w-72 sm:h-72 border border-gray-300 bg-white flex items-center justify-center overflow-hidden shadow-md'>
+              <img 
+                src="https://scontent.fbhr4-1.fna.fbcdn.net/v/t39.30808-6/451959897_1715141255906819_4364894322530061040_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=XfMhSYdvdFkQ7kNvgF92frq&_nc_ht=scontent.fbhr4-1.fna&oh=00_AYCZFf-15CYqmVCxTG88NsoF0hy41LUOlpl1xkBnHlFUHA&oe=66A1D2A2" 
+                alt="Esewa QR Code" 
+                className='w-full h-full object-cover'
               />
+            </div>
+            {image && (
+              <div className='w-64 h-64 sm:w-72 sm:h-72 rounded-full border border-gray-300 bg-white flex items-center justify-center overflow-hidden shadow-md mt-4 sm:mt-0'>
+                <img
+                  src={image}
+                  alt="Uploaded Payment Image"
+                  className='w-full h-full object-cover'
+                />
+              </div>
             )}
           </div>
           <form onSubmit={handleSubmit} className='w-full max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg'>
