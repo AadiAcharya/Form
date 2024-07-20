@@ -1,60 +1,81 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const ImageUpload = () => {
-  const [image, setImage] = useState(null);
-  const [error, setError] = useState(null);
+  const [image, setImage] = useState(null); // State to hold the uploaded image
+  const fileInputRef = useRef(); // Ref to access the file input
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setImage(reader.result);
-        setError(null); // Clear any previous error
+        setImage(reader.result); // Set Base64 string of the image
       };
       reader.onerror = () => {
-        setError('Error uploading image. Please try again.'); // Handle FileReader errors
+        console.error('Error uploading image. Please try again.');
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // Convert image to Base64
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your form submission logic here (if any)
+
+    // Navigate to another page after form submission
+    navigate('/'); // Replace '/formpage' with the actual path to your form page
+  };
+
   return (
-    <div className='flex flex-col h-screen justify-center items-center p-4 sm:p-6 md:p-8 lg:p-10'>
-      <div className='bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-white max-h-screen py-6 px-4 sm:py-8 sm:px-6 md:py-10 md:px-8 lg:py-12 lg:px-10 w-full max-w-4xl mx-auto rounded-md shadow-lg'>
-        <h2 className='text-2xl sm:text-3xl md:text-4xl font-semibold mb-4'>Method of Payment</h2>
-        <div className="pay flex flex-col items-center py-4 sm:py-6 md:py-8">
-          <div className='flex flex-col items-center w-full'>
-            <h3 className='text-xl sm:text-2xl md:text-3xl font-semibold mb-2'>Esewa:</h3>
-            <p className='text-base sm:text-lg md:text-xl mb-4 text-center'>
-              Scan the given QR code to proceed with the payment
-            </p>
-            <div className='flex flex-col sm:flex-row items-center gap-4 mb-4'>
-              <img src="./src/assets/esewa.png" alt="Esewa QR Code" className='w-40 h-40 sm:w-48 sm:h-48 object-contain'/>
-              {image && (
-                <img
-                  src={image}
-                  alt="Uploaded Payment Image"
-                  className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-md mt-4 sm:mt-0"
-                />
-              )}
-            </div>
-            {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-            <label htmlFor="image-upload" className='bg-blue-600 text-white text-lg sm:text-xl border rounded-lg p-4 sm:p-6 cursor-pointer'>
-              Update Image
+    <div className='flex flex-col h-screen justify-center items-center p-6 bg-gray-100'>
+      <div className='bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 text-white py-8 px-6 w-full max-w-4xl mx-auto rounded-md shadow-lg'>
+        <h2 className='text-3xl font-semibold mb-6'>Method of Payment</h2>
+        <div className='flex flex-col items-center'>
+          <h3 className='text-2xl font-semibold mb-2'>Esewa:</h3>
+          <p className='text-lg mb-6 text-center'>
+            Scan the given QR code to proceed with the payment
+          </p>
+          <div className='flex flex-col sm:flex-row items-center gap-6 mb-6'>
+            <img 
+              src="./src/assets/esewa.png" 
+              alt="Esewa QR Code" 
+              className='w-40 h-40 sm:w-48 sm:h-48 object-contain border border-gray-300 rounded-lg shadow-md'
+            />
+            <p>Please write your name in <b>REMARKS</b></p>
+            {image && (
+              <img
+                src={image}
+                alt="Uploaded Payment Image"
+                className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-lg shadow-md mt-4 sm:mt-0"
+              />
+            )}
+          </div>
+          <form onSubmit={handleSubmit} className='w-full max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg'>
+            <label htmlFor="image-upload" className='bg-blue-600 text-white text-lg border rounded-lg p-4 cursor-pointer'>
+              Upload Image
             </label>
             <input
               type="file"
               accept='image/jpeg,image/png,image/jpg'
               id="image-upload"
-              name='image-upload'
               className='hidden'
               onChange={handleImageChange}
+              ref={fileInputRef}
             />
-            <p className='text-base sm:text-lg md:text-xl text-gray-300 mt-4 text-center'>
-              Place a screenshot of your transaction in the above input
-            </p>
-          </div>
+            <div>
+              <button 
+                type='submit' 
+                className='bg-blue-500 text-white py-2 px-4 rounded-md mt-4 hover:bg-blue-600 transition duration-200'
+              >
+                Done!
+              </button>
+            </div>
+          </form>
+          <p className='text-base text-gray-300 mt-6 text-center'>
+            Place a screenshot of your transaction in the above input
+          </p>
         </div>
       </div>
     </div>
