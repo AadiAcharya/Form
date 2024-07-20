@@ -42,7 +42,7 @@ const Form = () => {
         setFormSuccess('Email sent successfully!');
         form.current.reset();
         // Navigate to the image upload page after success
-        setTimeout(() => navigate('/imageupload'), 1000); // Delay to show success message
+        setTimeout(() => navigate('/imageupload'), 100); // Delay to show success message
       }, (error) => {
         setFormError('Failed to send email.');
         console.error('Failed to send email:', error.text);
