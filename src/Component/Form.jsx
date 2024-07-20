@@ -6,20 +6,20 @@ const Form = () => {
   const form = useRef();
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate(); 
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // Clear previous messages
+
     setFormError('');
     setFormSuccess('');
 
-    // Validate form fields
+
     const formData = new FormData(form.current);
     const data = Object.fromEntries(formData);
 
-    // Email validation for Gmail
+
     const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     
     if (!data.from_name || !data.from_email || !data.from_phone || !data.from_college || !data.message) {
@@ -42,7 +42,7 @@ const Form = () => {
         setFormSuccess('Email sent successfully!');
         form.current.reset();
         // Navigate to the image upload page after success
-        setTimeout(() => navigate('/imageupload'), 100); // Delay to show success message
+        setTimeout(() => navigate('/imageupload'), 100); 
       }, (error) => {
         setFormError('Failed to send email.');
         console.error('Failed to send email:', error.text);

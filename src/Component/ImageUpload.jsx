@@ -1,31 +1,31 @@
 import React, { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const ImageUpload = () => {
-  const [image, setImage] = useState(null); // State to hold the uploaded image
-  const fileInputRef = useRef(); // Ref to access the file input
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [image, setImage] = useState(null);
+  const fileInputRef = useRef(); 
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setImage(reader.result); // Set Base64 string of the image
+        setImage(reader.result); 
       };
       reader.onerror = () => {
         console.error('Error uploading image. Please try again.');
       };
-      reader.readAsDataURL(file); // Convert image to Base64
+      reader.readAsDataURL(file); 
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your form submission logic here (if any)
 
-    // Navigate to another page after form submission
-    navigate('/'); // Replace '/formpage' with the actual path to your form page
+
+
+    navigate('/'); 
   };
 
   return (
