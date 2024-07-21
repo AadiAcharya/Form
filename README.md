@@ -8,6 +8,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # form-npi
 # form-npi
+<<<<<<< HEAD
 # form-npi
 # form-npi
 # npiform
+=======
+>>>>>>> 710cc00 (first commit)

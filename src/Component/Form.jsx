@@ -36,7 +36,7 @@ const Form = () => {
     }
 
     try {
-      await emailjs.sendForm('service_ltzv5hg', 'template_di6c658', form.current, '3ERo9wAPnsHLrBSEo');
+      await emailjs.sendForm('service_zwj7pr9', 'template_x1nkt67', form.current, 'WF5TXp5TR1fvmNRz6');
       setFormSuccess('Email sent successfully!');
       form.current.reset();
       
