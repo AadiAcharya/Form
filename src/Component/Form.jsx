@@ -119,6 +119,7 @@ const Form = () => {
             className="w-full border border-gray-300 rounded-md shadow-lg shadow-black opacity-70 p-3 text-base sm:text-lg focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
             required 
             autoComplete='on'
+            placeholder='Please enter your Name and use your real name in remark section during payment to secure our seat.'
           ></textarea>
         </div>
 
