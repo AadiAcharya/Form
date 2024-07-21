@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Subscribe = () => {
+const FirstPage = () => {
   return (
     <div>
        
@@ -27,4 +27,4 @@ const Subscribe = () => {
   )
 }
 
-export default Subscribe
+export default FirstPage

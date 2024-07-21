@@ -6,7 +6,7 @@ const Form = () => {
   const form = useRef();
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -43,9 +43,7 @@ const Form = () => {
       // Navigate to the image upload page after success
       setTimeout(() => {
         navigate('/imageupload');
-        setFormError(''); // Clear error message on successful navigation
-        setFormSuccess(''); // Clear success message on successful navigation
-      }, 100); 
+      }, 500); // Adjust the delay if necessary
     } catch (error) {
       setFormError('Failed to send email.');
       console.error('Failed to send email:', error.text);
