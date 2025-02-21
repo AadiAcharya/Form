@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: { 
       fontFamily:{
-        aadi:["Roboto", 'sans-serif']
+        aadi:["Roboto", 'sans-serif'],
+        royal:["Montserrat", 'sans-serif'],
       },
     },
   },

@@ -50,7 +50,7 @@ const Form = () => {
   };
 
   return (
-    <div className='bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col justify-center items-center gap-6 p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20 w-full max-w-screen mx-auto'>
+    <div className='font-royal bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 flex flex-col justify-center items-center gap-6 p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20 w-full max-w-screen mx-auto'>
       <h1 className='text-3xl sm:text-4xl md:text-5xl font-semibold mt-4'>
         Contact Detail
         <hr className='mt-2 border-t-2 border-white'/>
@@ -112,6 +112,7 @@ const Form = () => {
             rows="6"
             className="w-full border border-gray-300 rounded-md shadow-lg shadow-black opacity-70 p-3 text-base sm:text-lg focus:border-blue-400 focus:ring focus:ring-blue-400 focus:ring-opacity-50"
             required autoComplete='on'
+            placeholder='Please enter your Name and use your real name in remark section during payment to secure our seat.                                                    Note: Do not use different name in different field  '
           ></textarea>
         </div>
 
